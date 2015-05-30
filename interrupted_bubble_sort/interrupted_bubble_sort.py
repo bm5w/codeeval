@@ -21,7 +21,7 @@ def interrupted_bs(line):
     temp[0] = temp[0].rstrip()
     inputL = [int(x) for x in temp[0].split(' ')]
     for x in xrange(num):
-        old = list(inputL)
+        old = inputL[:]
         inputL = bubble_sort(inputL)
         # check if sorted
         if old == inputL:
