@@ -4,8 +4,8 @@ https://www.codeeval.com/open_challenges/158/
 """
 
 
-def main():
-    pass
+def main(filename):
+    print 'test'
 
 
 if __name__ == '__main__':
