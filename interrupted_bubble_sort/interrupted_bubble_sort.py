@@ -2,6 +2,7 @@
 Solution to code eval interrupted bubble sort:
 https://www.codeeval.com/open_challenges/158/
 """
+import sys
 
 
 def main(filename):
@@ -33,4 +34,5 @@ def bubble_sort(inputL):
 
 
 if __name__ == '__main__':
-    main('input.txt')
+    filename = sys.argv[1]
+    main(filename)
