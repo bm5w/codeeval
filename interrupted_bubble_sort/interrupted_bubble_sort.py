@@ -17,17 +17,17 @@ def interrupted_bs(line):
     """Parse input line and preform bubble sort X times.
     X is defined as the integer after '|' on line."""
     temp = line.split('|')
-    num = int(temp[1].rstrip())
+    temp[1] = int(temp[1])
     temp[0] = temp[0].rstrip()
-    inputL = [int(x) for x in temp[0].split(' ')]
-    for x in xrange(num):
-        old = inputL[:]
-        inputL = bubble_sort(inputL)
+    temp[0] = [int(x) for x in temp[0].split(' ')]
+    for x in xrange(temp[1]):
+        old = temp[0][:]
+        temp[0] = bubble_sort(temp[0])
         # check if sorted
-        if old == inputL:
+        if old == temp[0]:
             break
     # convert back to string
-    print ' '.join(map(str, inputL))
+    print ' '.join(map(str, temp[0]))
 
 
 def main(filename):
