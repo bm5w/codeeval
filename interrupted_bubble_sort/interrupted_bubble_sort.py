@@ -20,7 +20,8 @@ def interrupted_bs(line):
     inputL = [int(x) for x in temp[0].split(' ')]
     for x in xrange(num):
         inputL = bubble_sort(inputL)
-    print inputL
+    # convert back to string
+    print ' '.join(map(str, inputL))
 
 
 def bubble_sort(inputL):

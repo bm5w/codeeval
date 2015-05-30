@@ -7,7 +7,7 @@ class Capture(list):
     """Context manager for capturing stdout."""
     def __enter__(self):
         self._stdout = sys.stdout
-        self.stdout = self._stringio = StringIO()
+        sys.stdout = self._stringio = StringIO()
         return self
 
     def __exit__(self, *args):
@@ -23,6 +23,8 @@ def test_sample():
                 '5 48 18 51 61',
                 '55 31 59 4 1 25 26 19 60 0 68 73']
     with Capture() as output:
-        interrupted_bubble_sort.main('input.txt')
+        interrupted_bubble_sort.main("input.txt")
     for exp, act in map(None, expected, output):
+        print 'exp: {}'.format(exp)
+        print 'act: {}'.format(act)
         assert exp == act
