@@ -20,17 +20,16 @@ def divisible(num, denom):
 def fizz_buzz(line):
     """Print correct fizz buzz output given input line."""
     inp = line.split(' ')
-    x = inp[0]
-    y = inp[1]
+    x, y, num = int(inp[0]), int(inp[1]), int(inp[2])
     output = []
-    for num in xrange(1, inp[2]+1):
+    for num in xrange(1, num+1):
         out = ''
         if divisible(num, x):
             out = 'F'
         if divisible(num, y):
             out = '{}B'.format(out)
         if not out:
-            output.append(num)
+            output.append(str(num))
         else:
             output.append(out)
     print ' '.join(output)
