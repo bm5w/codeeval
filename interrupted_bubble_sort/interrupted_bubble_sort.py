@@ -25,15 +25,10 @@ def interrupted_bs(line):
 
 
 def bubble_sort(inputL):
-    """One iteration of bubble sort.
-    Return None if already sorted."""
-    changed = False
+    """One iteration of bubble sort."""
     for num in xrange(len(inputL)-1):
         if inputL[num+1] < inputL[num]:
             inputL[num+1], inputL[num] = inputL[num], inputL[num+1]
-            changed = True
-    if not changed:
-        return None
     return inputL
 
 
