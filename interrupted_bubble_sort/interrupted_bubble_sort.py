@@ -29,7 +29,7 @@ def bubble_sort(inputL):
     Return None if already sorted."""
     changed = False
     for num in xrange(len(inputL)-1):
-        if inputL[num+1] > inputL[num]:
+        if inputL[num+1] < inputL[num]:
             inputL[num+1], inputL[num] = inputL[num], inputL[num+1]
             changed = True
     if not changed:
