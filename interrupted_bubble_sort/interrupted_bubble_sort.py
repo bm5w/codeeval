@@ -11,12 +11,16 @@ def main(filename):
             interrupted_bs(line)
 
 
-
 def interrupted_bs(line):
     """Parse input line and preform bubble sort X times.
     X is defined as the integer after '|' on line."""
     temp = line.split('|')
-    import pdb; pdb.set_trace()
+    num = int(temp[1])
+    temp[0] = temp[0].rstrip()
+    inputL = [int(x) for x in temp[0].split(' ')]
+    for x in xrange(num):
+        inputL = bubble_sort(inputL)
+    print inputL
 
 
 def bubble_sort(inputL):
