@@ -1,3 +1,18 @@
+import interrupted_bubble_sort
+import sys
+from cStringIO import StringIO
+
+
+class Capture(list):
+    """Context manager for capturing stdout."""
+    def __enter__(self):
+        self._stdout = sys.stdout
+        self.stdout = self._stringio = StringIO()
+        return self
+
+    def __exit__(self, *args):
+        self.extend(self._stringio.getvalue().splitlines())
+        sys.stdout = self._stdout
 
 
 def test_sample():
@@ -7,7 +22,7 @@ def test_sample():
                  ' 76 78'),
                 '5 48 18 51 61',
                 '55 31 59 4 1 25 26 19 60 0 68 73']
-    expected = [x.split(' ') for x in expected]
-
-
-
+    with Capture as output:
+        interrupted_bubble_sort.main('input.txt')
+    for exp, act in zip(expected, output):
+        assert exp == act
