@@ -1,4 +1,17 @@
+from cStringIO import StringIO
+import sys
+import fizz_buzz
 
+
+class Capture(list):
+    """Context manager for capturing stdout."""
+    def __enter__(self):
+        self._stdout = sys.stdout
+        sys.stdout = self._stringio = StringIO()
+
+    def __exit__(self, *args):
+        self.extend(self._stringio.getvalue().splitlines())
+        sys.stdout = self._stdout
 
 
 
