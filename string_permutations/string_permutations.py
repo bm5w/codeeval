@@ -12,9 +12,7 @@ from itertools import permutations
 def _permutations(line):
     """Given input line, return all permutations in alphabetical order."""
     perm = permutations(line.rstrip())
-    output = []
-    for x in perm:
-        output.append(''.join(x))
+    output = [''.join(x) for x in perm]
     output.sort()
     print ','.join(output)
 
