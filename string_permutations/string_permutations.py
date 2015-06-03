@@ -17,10 +17,16 @@ def main(filename):
 
 def _permutations(line):
     """Given input line, return all permutations in alphabetical order."""
-    output = permutations(line)
-    return output.join(',')
+    perm = permutations(line.rstrip())
+    # itertools.permutations returns a generator, convert to list.
+    perm = list(perm)
+    output = []
+    for x in perm:
+        output.append(''.join(x))
+    output.sort()
+    print ','.join(output)
 
 
 if __name__ == '__main__':
     filename = sys.argv[1]
-    main()
+    main(filename)
