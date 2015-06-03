@@ -23,15 +23,14 @@ def fizz_buzz(line):
     x, y, num = int(inp[0]), int(inp[1]), int(inp[2])
     output = []
     for num in xrange(1, num+1):
-        out = ''
-        if divisible(num, x):
-            out = 'F'
-        if divisible(num, y):
-            out = '{}B'.format(out)
-        if not out:
-            output.append(str(num))
+        if divisible(num, x) and divisible(num, y):
+            output.append('FB')
+        elif divisible(num, x):
+            output.append('F')
+        elif divisible(num, y):
+            output.append('B')
         else:
-            output.append(out)
+            output.append(str(num))
     print ' '.join(output)
 
 
