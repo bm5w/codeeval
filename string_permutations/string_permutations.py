@@ -9,12 +9,6 @@ import sys
 from itertools import permutations
 
 
-def main(filename):
-    with open(filename, 'r') as file_handle:
-        for line in file_handle:
-            _permutations(line)
-
-
 def _permutations(line):
     """Given input line, return all permutations in alphabetical order."""
     perm = permutations(line.rstrip())
@@ -24,7 +18,6 @@ def _permutations(line):
     output.sort()
     print ','.join(output)
 
-
-if __name__ == '__main__':
-    filename = sys.argv[1]
-    main(filename)
+with open(sys.argv[1], 'r') as file_handle:
+    for line in file_handle:
+        _permutations(line)
