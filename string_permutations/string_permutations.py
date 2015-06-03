@@ -18,8 +18,6 @@ def main(filename):
 def _permutations(line):
     """Given input line, return all permutations in alphabetical order."""
     output = permutations(line.rstrip())
-    # itertools.permutations returns a generator, convert to list.
-    output = list(output)
     for num, x in enumerate(output):
         output[num] = ''.join(x)
     output.sort()
