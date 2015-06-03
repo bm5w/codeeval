@@ -17,9 +17,10 @@ def main(filename):
 
 def _permutations(line):
     """Given input line, return all permutations in alphabetical order."""
-    output = permutations(line.rstrip())
-    for num, x in enumerate(output):
-        output[num] = ''.join(x)
+    perm = permutations(line.rstrip())
+    output = []
+    for x in perm:
+        output.append(''.join(x))
     output.sort()
     print ','.join(output)
 
