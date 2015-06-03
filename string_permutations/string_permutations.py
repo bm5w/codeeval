@@ -11,7 +11,7 @@ from itertools import permutations
 
 def _permutations(line):
     """Given input line, return all permutations in alphabetical order."""
-    perm = permutations(line.rstrip())
+    perm = permutations(line.strip())
     output = [''.join(x) for x in perm]
     output.sort()
     print ','.join(output)
