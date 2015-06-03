@@ -11,10 +11,7 @@ def main(filename):
 
 def divisible(num, denom):
     """Return true if num is divisible by denom, false otherwise."""
-    if num % denom == 0:
-        return True
-    else:
-        return False
+    return bool(num % denom == 0)
 
 
 def fizz_buzz(line):
