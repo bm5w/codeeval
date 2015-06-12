@@ -29,4 +29,33 @@ Print to stdout the lowest common ancestor, one per line. Lowest means the lowes
 30
 8
 """
+import sys
 
+
+def find_path_to(node):
+    """Given node return path to as list of nodes."""
+    pass
+
+
+def lca(node1, node2):
+    path1 = find_path_to(node1)
+    path2 = find_path_to(node2)
+    last = None
+    for x, y in map(None, path1, path2):
+        if x == y:
+            last = x
+        else:
+            break
+    return last
+
+
+def main(input_file):
+    with open(input_file) as f:
+        line = f.readline()
+        values = line.split(' ')
+        lca(values[0], values[1])
+
+
+if __name__ == '__main__':
+    input_file = sys.argv[1]
+    main(input_file)
