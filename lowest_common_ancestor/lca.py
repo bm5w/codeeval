@@ -32,12 +32,13 @@ Print to stdout the lowest common ancestor, one per line. Lowest means the lowes
 import sys
 
 
-def find_path_to(node):
+def find_path_to(node, tree=default):
     """Given node return path to as list of nodes."""
     pass
 
 
 def lca(node1, node2):
+    """Compare paths to nodes and return lowest common ancestor."""
     path1 = find_path_to(node1)
     path2 = find_path_to(node2)
     last = None
