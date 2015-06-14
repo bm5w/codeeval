@@ -68,9 +68,9 @@ def main(input_file):
     for x in list_of_nodes:
         tree.insert(x)
     with open(input_file) as f:
-        line = f.readline()
-        values = line.split(' ')
-        lca(int(values[0].strip()), int(values[1].strip()), tree)
+        for line in f:
+            values = line.split(' ')
+            lca(int(values[0].strip()), int(values[1].strip()), tree)
 
 
 class Bst():
