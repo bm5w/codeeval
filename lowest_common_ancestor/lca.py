@@ -59,7 +59,7 @@ def lca(node1, node2, tree):
             last = x
         else:
             break
-    print last
+    return last
 
 
 def main(input_file):
@@ -69,8 +69,8 @@ def main(input_file):
         tree.insert(x)
     with open(input_file) as f:
         for line in f:
-            values = line.split(' ')
-            lca(int(values[0].strip()), int(values[1].strip()), tree)
+            values = [int(value.strip()) for value in line.split(' ')]
+            print lca(values[0], values[1], tree)
 
 
 class Bst():
