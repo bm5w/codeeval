@@ -57,6 +57,49 @@ def main(input_file):
         lca(values[0], values[1])
 
 
+class bst():
+    def __init__(self):
+        '''Initialize a bst with a start value and dictionary of nodes.'''
+        self.start = None
+        self.nodes = {}
+
+    def _insert(self, node, val):
+        '''Recursive helper method for insert.'''
+        if node < val:
+            if self.nodes[node].get('right') is None:
+                self.nodes[node]['right'] = val
+                self.nodes[val] = {'parent': node}
+
+            else:
+                self._insert(self.nodes[node]['right'], val)
+        else:
+            if self.nodes[node].get('left') is None:
+                self.nodes[node]['left'] = val
+                self.nodes[val] = {'parent': node}
+            else:
+                self._insert(self.nodes[node]['left'], val)
+
+    def insert(self, val):
+        '''Insert a value into the bst unless already present.'''
+        if self.contains(val):
+            return None
+        if self.start is None:
+            self.start = val
+            self.nodes[val] = {}
+        else:
+            self._insert(self.start, val)
+
+    def contains(self, val):
+        '''Will return True if the value is in the bst.'''
+        return val in self.nodes
+
+    def left(self, node):
+        return self.nodes[node].get('left')
+
+    def right(self, node):
+        return self.nodes[node].get('right')
+
+
 if __name__ == '__main__':
     input_file = sys.argv[1]
     main(input_file)
