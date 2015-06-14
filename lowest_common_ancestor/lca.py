@@ -30,7 +30,47 @@ Print to stdout the lowest common ancestor, one per line. Lowest means the lowes
 8
 """
 import sys
-from bst import Bst
+
+
+class Node():
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class Bst():
+    def __init__(self):
+        self.start = None
+        self.nodes = set()
+
+    def _insert(self, node, curr):
+        if node.value < curr.value:
+            if curr.left:
+                self._insert(node, curr.left)
+            else:
+                curr.left = node
+        else:
+            if curr.right:
+                self._insert(node, curr.right)
+            else:
+                curr.right = node
+
+    def insert(self, val):
+        if self.contains(val):
+            print "Value already in tree."
+            return None
+        new = Node(val)
+        if self.start is None:
+            self.start = new
+        else:
+            self._insert(new, self.start)
+
+    def contains(self, val):
+        for node in self.nodes:
+            if val == node.value:
+                return True
+        return False
 
 
 def find_path_to(node, tree):
@@ -72,49 +112,6 @@ def main(input_file):
         for line in f:
             values = [int(value.strip()) for value in line.split(' ')]
             print lca(values[0], values[1], tree)
-
-
-# class Bst():
-#     def __init__(self):
-#         '''Initialize a bst with a start value and dictionary of nodes.'''
-#         self.start = None
-#         self.nodes = {}
-
-#     def _insert(self, node, val):
-#         '''Recursive helper method for insert.'''
-#         if node < val:
-#             if self.nodes[node].get('right') is None:
-#                 self.nodes[node]['right'] = val
-#                 self.nodes[val] = {'parent': node}
-
-#             else:
-#                 self._insert(self.nodes[node]['right'], val)
-#         else:
-#             if self.nodes[node].get('left') is None:
-#                 self.nodes[node]['left'] = val
-#                 self.nodes[val] = {'parent': node}
-#             else:
-#                 self._insert(self.nodes[node]['left'], val)
-
-#     def insert(self, val):
-#         '''Insert a value into the bst unless already present.'''
-#         if self.contains(val):
-#             return None
-#         if self.start is None:
-#             self.start = val
-#             self.nodes[val] = {}
-#         else:
-#             self._insert(self.start, val)
-
-#     def contains(self, val):
-#         '''Will return True if the value is in the bst.'''
-#         return val in self.nodes
-
-#     def left(self, node):
-#         return self.nodes[node].get('left')
-
-#     def right(self, node):
-#         return self.nodes[node].get('right')
 
 
 if __name__ == '__main__':
