@@ -32,9 +32,20 @@ Print to stdout the lowest common ancestor, one per line. Lowest means the lowes
 import sys
 
 
-def find_path_to(node, tree=default):
+def find_path_to(node, tree):
     """Given node return path to as list of nodes."""
-    pass
+    out = []
+    if not Bst.tree.contains(node):
+        return None
+    current = Bst.tree.start
+    while True:
+        out.append(current)
+        if node == current:
+            break
+        if node < current:
+            current = Bst.tree.left(current)
+        else:
+            current = Bst.tree.right(current)
 
 
 def lca(node1, node2):
@@ -51,13 +62,17 @@ def lca(node1, node2):
 
 
 def main(input_file):
+    tree = Bst()
+    list_of_nodes = [30, 8, 52, 3, 20, 10, 29]
+    for x in list_of_nodes:
+        tree.insert(x)
     with open(input_file) as f:
         line = f.readline()
         values = line.split(' ')
-        lca(values[0], values[1])
+        lca(values[0], values[1], tree)
 
 
-class bst():
+class Bst():
     def __init__(self):
         '''Initialize a bst with a start value and dictionary of nodes.'''
         self.start = None
