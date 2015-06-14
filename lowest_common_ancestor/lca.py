@@ -95,7 +95,7 @@ def lca(node1, node2, tree):
     path1 = find_path_to(node1, tree)
     path2 = find_path_to(node2, tree)
     last = None
-    for x, y in map(None, path1, path2):
+    for x, y in zip(path1, path2):
         if x == y:
             last = x
         else:
