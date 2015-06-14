@@ -35,30 +35,31 @@ import sys
 def find_path_to(node, tree):
     """Given node return path to as list of nodes."""
     out = []
-    if not Bst.tree.contains(node):
+    if not tree.contains(node):
         return None
-    current = Bst.tree.start
+    current = tree.start
     while True:
         out.append(current)
         if node == current:
             break
         if node < current:
-            current = Bst.tree.left(current)
+            current = tree.left(current)
         else:
-            current = Bst.tree.right(current)
+            current = tree.right(current)
+    return out
 
 
-def lca(node1, node2):
+def lca(node1, node2, tree):
     """Compare paths to nodes and return lowest common ancestor."""
-    path1 = find_path_to(node1)
-    path2 = find_path_to(node2)
+    path1 = find_path_to(node1, tree)
+    path2 = find_path_to(node2, tree)
     last = None
     for x, y in map(None, path1, path2):
         if x == y:
             last = x
         else:
             break
-    return last
+    print last
 
 
 def main(input_file):
@@ -69,7 +70,7 @@ def main(input_file):
     with open(input_file) as f:
         line = f.readline()
         values = line.split(' ')
-        lca(values[0], values[1], tree)
+        lca(int(values[0].strip()), int(values[1].strip()), tree)
 
 
 class Bst():
