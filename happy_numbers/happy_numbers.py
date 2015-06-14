@@ -19,4 +19,26 @@ If the number is a happy number, print out 1. If not, print out 0. E.g
 0
 For the curious, here's why 7 is a happy number: 7->49->97->130->10->1. Here's why 22 is NOT a happy number: 22->8->64->52->29->85->89->145->42->20->4->16->37->58->89 ...
 """
+import sys
 
+
+def happy_number(num, past=[]):
+    if num == 1:
+        return 1
+    elif num in past:
+        return 0
+    else:
+        past.append(num)
+        num = sum([int(x)**2 for x in str(num)])
+        return happy_number(num, past)
+
+
+def main(input_file):
+    with open(input_file, 'r') as f:
+        for line in f:
+            print happy_number(int(line.strip()))
+
+
+if __name__ == '__main__':
+    input_file = sys.argv[1]
+    main(input_file)

@@ -9,4 +9,4 @@ def test_happy_numbers():
     output, stderr = process.communicate()
     output = output.splitlines()
     for ex, act in map(None, expected, output):
-        assert ex == act
+        assert ex == int(act)
