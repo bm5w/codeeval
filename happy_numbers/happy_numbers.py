@@ -22,15 +22,14 @@ For the curious, here's why 7 is a happy number: 7->49->97->130->10->1. Here's w
 import sys
 
 
-def happy_number(num, past=[]):
+def happy_number(num):
     if num == 1:
         return 1
-    elif num in past:
+    elif num == 4:      # all unhappy numbers end up in cycle including 4
         return 0
     else:
-        past.append(num)
         num = sum([int(x)**2 for x in str(num)])
-        return happy_number(num, past)
+        return happy_number(num)
 
 
 def main(input_file):
