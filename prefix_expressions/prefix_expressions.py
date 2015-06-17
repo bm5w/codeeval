@@ -66,7 +66,10 @@ def perform(operator, index, nums):
     if operator == '*':
         new = left * right
     elif operator == '/':
-        new = left / right
+        if right > 0:
+            new = left / right
+        else:
+            new = 0
     else:
         new = left + right
     nums.enqueue(new)
@@ -77,13 +80,16 @@ def perform(operator, index, nums):
 
 def prefix(line):
     nums_and_operators = line.split(' ')
+    index = len(nums_and_operators) // 2
+    operators, nums_list = nums_and_operators[:index], nums_and_operators[index:]
     nums = Queue()
-    operators = []
-    for x in nums_and_operators:
-        if ord(x) >= 48 and ord(x) <= 57:
-            nums.enqueue(int(x))
-        else:
-            operators.append(x)
+    for x in nums_list:
+        nums.enqueue(int(x))
+    # for x in nums_and_operators:
+    #     if ord(x) >= 48 and ord(x) <= 57:
+    #         nums.enqueue(int(x))
+    #     else:
+    #         operators.append(x)
     possible_operators = [u'*', u'/', u'+']
 
     for operator in possible_operators:
