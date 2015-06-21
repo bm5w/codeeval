@@ -18,10 +18,11 @@ from sys import argv
 def main(levels):
     for level in xrange(levels):
         for sub_level in xrange(level+2):
-            spaces = (levels+2-sub_level) * ' '
             stars = ((2 * sub_level) + 1) * '*'
-            print '{spaces}{stars}'.format(spaces=spaces, stars=stars)
-
+            print ('{:^' + str(2 * levels + 2) + '}').format(stars)
+            # alternate method without using format centering
+            # spaces = (levels+2-sub_level) * ' '
+            # print '{spaces}{stars}'.format(spaces=spaces, stars=stars)
 
 if __name__ == '__main__':
     main(int(argv[1]))
